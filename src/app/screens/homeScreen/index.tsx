@@ -4,7 +4,7 @@ import React from "react";
 
 const HomeScreen: React.FC = () => {
   return (
-    <div>
+    <div className=" flex flex-col flex-grow">
       <Header />
       <LayoutBox />
     </div>
