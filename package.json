@@ -16,6 +16,7 @@
     "@uiw/react-codemirror": "^4.21.24",
     "next": "14.1.0",
     "react": "^18",
+    "react-csv-downloader": "^3.1.0",
     "react-dom": "^18",
     "react-papaparse": "^4.4.0",
     "react-toastify": "^10.0.4",

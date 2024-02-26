@@ -2,6 +2,8 @@
 import React, { memo, useMemo, useState } from "react";
 import { useBoundStore } from "@/app/store/rootStore";
 import LoadingAnimation from "../loader";
+import CsvDownloader from "react-csv-downloader";
+import { convertToHeaders, convertToRows } from "@/app/utilities/helpers";
 
 const Table: React.FC = () => {
   // Get data and state from the store
@@ -93,16 +95,37 @@ const Table: React.FC = () => {
       <div className="overflow-scroll h-96 md:h-[500px] rounded-md border-2 dark:border-gray-600 border-gray-300 bg-slate-300 dark:bg-stone-800">
         {content}
       </div>
-      {/* Load more button */}
-      <button
-        disabled={allDataRendered}
-        onClick={loadMore}
-        className={`${
-          allDataRendered ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-700"
-        } text-white px-2 py-1 rounded-md mt-3 text-sm`}
-      >
-        Load More
-      </button>
+      <div className="flex items-center gap-3">
+        {/* Load more button */}
+        <button
+          disabled={allDataRendered}
+          onClick={loadMore}
+          className={`${
+            allDataRendered ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-700"
+          } text-white px-2 py-1 rounded-md mt-3 text-sm`}
+        >
+          Load More
+        </button>
+        {/* Export CSV button */}
+
+        {data.length > 0 && (
+          <CsvDownloader
+            filename="mycsv"
+            extension=".csv"
+            separator=","
+            wrapColumnChar=""
+            columns={convertToHeaders(data)}
+            datas={convertToRows(data)}
+          >
+            <button
+              onClick={loadMore}
+              className={` text-white bg-stone-500 px-2 py-1 rounded-md mt-3 text-sm`}
+            >
+              Export Data
+            </button>
+          </CsvDownloader>
+        )}
+      </div>
     </div>
   );
 };

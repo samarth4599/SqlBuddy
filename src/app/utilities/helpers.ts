@@ -1,5 +1,9 @@
 import { readString } from "react-papaparse";
-import { TScreenState, TTableData } from "../constants/interfaces";
+import {
+  IHeaderObject,
+  TScreenState,
+  TTableData,
+} from "../constants/interfaces";
 import { csvArray, csvLink } from "../constants/constants";
 import { callApi } from "./api";
 import { Bounce, toast } from "react-toastify";
@@ -83,4 +87,40 @@ export const onExecute = async (
     setState("error");
     setData([]);
   }
+};
+
+export const convertToHeaders = (data: TTableData): IHeaderObject[] => {
+  if (!Array.isArray(data) || data.length === 0 || !Array.isArray(data[0])) {
+    return []; // Return an empty array if the input data is invalid
+  }
+
+  // Extract the headers from the first row of data
+  const headers: string[] = data[0];
+
+  // Map the headers array to the desired format
+  const formattedHeaders: IHeaderObject[] = headers.map((header) => ({
+    id: header,
+    displayName: header,
+  }));
+
+  return formattedHeaders;
+};
+
+export const convertToRows = (data: TTableData): Record<string, string>[] => {
+  if (!Array.isArray(data) || data.length < 2 || !Array.isArray(data[0])) {
+    return []; // Return an empty array if the input data is invalid
+  }
+
+  // Extract the headers from the first row of data
+  const headers: string[] = data[0];
+
+  // Convert the rest of the rows into objects
+  const formattedData: Record<string, string>[] = data.slice(1).map((row) =>
+    row.reduce((acc, cell, index) => {
+      acc[headers[index]] = cell;
+      return acc;
+    }, {} as Record<string, string>)
+  );
+
+  return formattedData;
 };
