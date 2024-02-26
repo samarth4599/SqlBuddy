@@ -1,23 +1,28 @@
 "use client";
+import { csvLink } from "@/app/constants/constants";
+import { useBoundStore } from "@/app/store/rootStore";
+import { callApi } from "@/app/utilities/api";
+import { csvConverter } from "@/app/utilities/helpers";
 import { sql } from "@codemirror/lang-sql";
 import CodeMirror from "@uiw/react-codemirror";
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 
 const SqlEditor: React.FC = () => {
   const [value, setValue] = useState<string>("");
+  const { setData, setState, setHistory } = useBoundStore((state) => state);
   const onChange = React.useCallback((value: string) => {
-    console.log("value:", value);
     setValue(value);
   }, []);
-  const onClear = () => {
+  const onReset = () => {
     setValue("");
   };
-
-  const onExecute = () => {
-    // console.log(ref.current?.getValue());
+  const onExecute = async () => {
+    const getCSV = await callApi(csvLink("customers"), setState);
+    csvConverter(getCSV, setData);
+    setHistory(value);
   };
   return (
-    <div className="flex flex-grow flex-col">
+    <div className="flex flex-grow md:flex-grow-0 flex-col">
       <CodeMirror
         placeholder={"Write your SQL here"}
         maxHeight="200px"
@@ -30,10 +35,10 @@ const SqlEditor: React.FC = () => {
       />
       <div className="flex gap-3 mt-2">
         <button
-          onClick={onClear}
+          onClick={onReset}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
         >
-          Clear
+          Reset
         </button>
         <button
           onClick={onExecute}
@@ -46,4 +51,4 @@ const SqlEditor: React.FC = () => {
   );
 };
 
-export default memo(SqlEditor);
+export default SqlEditor;
