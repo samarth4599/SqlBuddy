@@ -1,11 +1,5 @@
-import { TScreenState } from "../constants/interfaces";
-
-export const callApi = async (
-  url: string,
-  setState: (state: TScreenState) => void
-) => {
+export const callApi = async (url: string) => {
   try {
-    setState("loading");
     const res = await fetch(url, {
       headers: {
         Accept: "application/json",
@@ -14,12 +8,11 @@ export const callApi = async (
 
     if (res.ok) {
       const data = await res.json();
-      setState("success");
       return data;
     } else {
-      setState("error");
+      throw new Error("Network response was not ok.");
     }
   } catch (err: any) {
-    setState("error");
+    throw new Error(err.message);
   }
 };

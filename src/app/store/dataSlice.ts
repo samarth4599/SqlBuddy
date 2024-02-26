@@ -9,6 +9,7 @@ export interface DataSlice {
   setData: (data: TTableData) => void;
   history: string[];
   setHistory: (text: string) => void;
+  clearHistory: () => void;
   state: TScreenState;
   setState: (state: TScreenState) => void;
 }
@@ -24,8 +25,11 @@ const createDataSlice: StateCreator<
   history: [],
   setHistory: (text: string) =>
     set((state) => ({
-      history: [text, ...state.history],
+      history: state.history.includes(text)
+        ? state.history
+        : [text, ...state.history],
     })),
+  clearHistory: () => set({ history: [] }),
   state: "success",
   setState: (state: TScreenState) => set({ state }),
 });

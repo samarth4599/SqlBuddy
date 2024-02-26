@@ -1,11 +1,11 @@
 "use client";
-import { csvLink } from "@/app/constants/constants";
+import { csvArray } from "@/app/constants/constants";
 import { useBoundStore } from "@/app/store/rootStore";
-import { callApi } from "@/app/utilities/api";
-import { csvConverter } from "@/app/utilities/helpers";
+import { onExecute } from "@/app/utilities/helpers";
 import { sql } from "@codemirror/lang-sql";
 import CodeMirror from "@uiw/react-codemirror";
 import React, { useState } from "react";
+import { Zoom, toast } from "react-toastify";
 
 const SqlEditor: React.FC = () => {
   const [value, setValue] = useState<string>("");
@@ -16,10 +16,20 @@ const SqlEditor: React.FC = () => {
   const onReset = () => {
     setValue("");
   };
-  const onExecute = async () => {
-    const getCSV = await callApi(csvLink("customers"), setState);
-    csvConverter(getCSV, setData);
-    setHistory(value);
+
+  const onTableClick = () => {
+    toast(`Available tables are: ${csvArray.join(", ")}`, {
+      position: "top-center",
+      type: "info",
+      autoClose: 8000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Zoom,
+    });
   };
   return (
     <div className="flex flex-grow md:flex-grow-0 flex-col">
@@ -36,15 +46,21 @@ const SqlEditor: React.FC = () => {
       <div className="flex gap-3 mt-2">
         <button
           onClick={onReset}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm"
         >
           Reset
         </button>
         <button
-          onClick={onExecute}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded"
+          onClick={() => onExecute(value, setData, setState, setHistory)}
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm"
         >
           Execute
+        </button>
+        <button
+          onClick={onTableClick}
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded text-sm"
+        >
+          Available Tables
         </button>
       </div>
     </div>
