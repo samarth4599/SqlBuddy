@@ -2,11 +2,20 @@
 "use client";
 import Header from "@/app/components/header";
 import LayoutBox from "@/app/components/layoutBox";
-import React from "react";
+import { useBoundStore } from "@/app/store/rootStore";
+import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const HomeScreen: React.FC = () => {
+  const { theme } = useBoundStore((state) => state);
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
   return (
     <div className=" flex flex-col flex-grow">
       <Header />

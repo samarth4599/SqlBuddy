@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 import SqlEditor from "../sqlEditor";
 import Table from "../table";
 import HistoryTable from "../history";
 
 const LayoutBox: React.FC = () => {
   return (
-    <div className="flex flex-col-reverse md:flex-row flex-grow p-3 gap-14 md:gap-4">
+    <div className="flex flex-col-reverse md:flex-row flex-grow p-3 gap-14 md:gap-4 bg-gradient-to-r dark:from-gray-600 dark:to-stone-900 from-slate-200 to-gray-700">
       <div className="flex flex-grow flex-col w-full md:w-7/12 ">
         <Table />
       </div>
@@ -18,4 +18,4 @@ const LayoutBox: React.FC = () => {
   );
 };
 
-export default LayoutBox;
+export default memo(LayoutBox);

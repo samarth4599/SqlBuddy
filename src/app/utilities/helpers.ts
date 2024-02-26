@@ -44,7 +44,7 @@ export const onExecute = async (
       setHistory(value);
       setState("success");
     } else {
-      throw new Error("Invalid SQL");
+      throw new Error("Invalid Table Name");
     }
   } catch (e: any) {
     toast(e.message ?? "Something went wrong", {

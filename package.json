@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "@codemirror/lang-sql": "^6.5.5",
-    "@react-spring/web": "^9.7.3",
+    "@uiw/codemirror-theme-dracula": "^4.21.24",
+    "@uiw/codemirror-theme-quietlight": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.24",
     "next": "14.1.0",
     "react": "^18",

@@ -3,13 +3,17 @@ import { csvArray } from "@/app/constants/constants";
 import { useBoundStore } from "@/app/store/rootStore";
 import { onExecute } from "@/app/utilities/helpers";
 import { sql } from "@codemirror/lang-sql";
+import { dracula } from "@uiw/codemirror-theme-dracula";
+import { quietlight } from "@uiw/codemirror-theme-quietlight";
 import CodeMirror from "@uiw/react-codemirror";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Zoom, toast } from "react-toastify";
 
 const SqlEditor: React.FC = () => {
   const [value, setValue] = useState<string>("");
-  const { setData, setState, setHistory } = useBoundStore((state) => state);
+  const { setData, setState, setHistory, theme } = useBoundStore(
+    (state) => state
+  );
   const onChange = React.useCallback((value: string) => {
     setValue(value);
   }, []);
@@ -36,6 +40,7 @@ const SqlEditor: React.FC = () => {
       <CodeMirror
         placeholder={"Write your SQL here"}
         maxHeight="200px"
+        theme={theme === "dark" ? dracula : quietlight}
         height="200px"
         autoFocus={true}
         autoCorrect="true"
@@ -67,4 +72,4 @@ const SqlEditor: React.FC = () => {
   );
 };
 
-export default SqlEditor;
+export default memo(SqlEditor);
