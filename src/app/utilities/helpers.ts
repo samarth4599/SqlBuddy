@@ -4,18 +4,23 @@ import { csvArray, csvLink } from "../constants/constants";
 import { callApi } from "./api";
 import { Bounce, toast } from "react-toastify";
 
+// Function to convert CSV data to table data
 export const csvConverter = (
   data: any,
   setData: (data: TTableData) => void
 ) => {
+  // Decode the content of the CSV data
   const encodedData = data.content.replace("\n", "");
   const stringData = atob(encodedData);
+
+  // Parse the decoded string as CSV using react-papaparse library
   readString(stringData, {
     worker: true,
     complete: (results: any) => setData(results.data),
   });
 };
 
+// Function to find a matching table name from the query
 export const findCSVTable = (query: string): string | null => {
   // Convert the query to lowercase for case-insensitive matching
   const lowerCaseQuery = query.toLowerCase();
@@ -29,6 +34,7 @@ export const findCSVTable = (query: string): string | null => {
   return tableName ?? null;
 };
 
+// Function to execute the CSV retrieval and conversion process
 export const onExecute = async (
   value: string,
   setData: (data: TTableData) => void,
@@ -36,17 +42,30 @@ export const onExecute = async (
   setHistory: (text: string) => void
 ) => {
   try {
+    // Find the matching table name from the query
     const table = findCSVTable(value);
+
     if (table) {
+      // If a valid table name is found, set the state to "loading"
       setState("loading");
+
+      // Call the API to retrieve the CSV data
       const getCSV = await callApi(csvLink(table));
+
+      // Convert the retrieved CSV data to table data
       csvConverter(getCSV, setData);
+
+      // Update the history with the executed query
       setHistory(value);
+
+      // Set the state to "success"
       setState("success");
     } else {
+      // If no valid table name is found, throw an error
       throw new Error("Invalid Table Name");
     }
   } catch (e: any) {
+    // Catch any errors that occur during the process and display an error toast
     toast(e.message ?? "Something went wrong", {
       position: "top-right",
       type: "error",
@@ -59,6 +78,8 @@ export const onExecute = async (
       theme: "light",
       transition: Bounce,
     });
+
+    // Set the state to "error" and clear the table data
     setState("error");
     setData([]);
   }

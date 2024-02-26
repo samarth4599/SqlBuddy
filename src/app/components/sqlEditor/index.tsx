@@ -1,27 +1,29 @@
-"use client";
-import { csvArray } from "@/app/constants/constants";
-import { useBoundStore } from "@/app/store/rootStore";
-import { onExecute } from "@/app/utilities/helpers";
+import React, { useState, useCallback, useMemo } from "react";
+import { toast, Zoom } from "react-toastify";
 import { sql } from "@codemirror/lang-sql";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 import { quietlight } from "@uiw/codemirror-theme-quietlight";
 import CodeMirror from "@uiw/react-codemirror";
-import React, { memo, useState } from "react";
-import { Zoom, toast } from "react-toastify";
+import { useBoundStore } from "@/app/store/rootStore";
+import { onExecute } from "@/app/utilities/helpers";
+import { csvArray } from "@/app/constants/constants";
+import "react-toastify/dist/ReactToastify.css";
 
 const SqlEditor: React.FC = () => {
   const [value, setValue] = useState<string>("");
   const { setData, setState, setHistory, theme } = useBoundStore(
     (state) => state
   );
-  const onChange = React.useCallback((value: string) => {
+
+  const onChange = useCallback((value: string) => {
     setValue(value);
   }, []);
-  const onReset = () => {
-    setValue("");
-  };
 
-  const onTableClick = () => {
+  const onReset = useCallback(() => {
+    setValue("");
+  }, []);
+
+  const onTableClick = useCallback(() => {
     toast(`Available tables are: ${csvArray.join(", ")}`, {
       position: "top-center",
       type: "info",
@@ -34,12 +36,12 @@ const SqlEditor: React.FC = () => {
       theme: "light",
       transition: Zoom,
     });
-  };
+  }, []);
+
   return (
     <div className="flex flex-grow md:flex-grow-0 flex-col">
       <CodeMirror
         placeholder={"Write your SQL here"}
-        maxHeight="200px"
         theme={theme === "dark" ? dracula : quietlight}
         height="200px"
         autoFocus={true}
@@ -72,4 +74,4 @@ const SqlEditor: React.FC = () => {
   );
 };
 
-export default memo(SqlEditor);
+export default SqlEditor;

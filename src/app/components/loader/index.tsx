@@ -1,5 +1,9 @@
 import React, { memo } from "react";
 
+/**
+ * LoadingAnimation component.
+ * Renders a loading animation.
+ */
 const LoadingAnimation: React.FC = () => {
   return (
     <div className="flex items-center justify-center h-screen">

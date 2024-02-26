@@ -4,9 +4,11 @@ import { useBoundStore } from "@/app/store/rootStore";
 import LoadingAnimation from "../loader";
 
 const Table: React.FC = () => {
+  // Get data and state from the store
   const { data, state } = useBoundStore((state) => state);
   const [visibleRows, setVisibleRows] = useState<number>(15);
 
+  // Loading animation component
   const loading = useMemo(
     () => (
       <div className="flex justify-center items-center h-full">
@@ -16,6 +18,7 @@ const Table: React.FC = () => {
     []
   );
 
+  // No data message component
   const noData = useMemo(
     () => (
       <div className="flex justify-center items-center h-full">
@@ -27,6 +30,7 @@ const Table: React.FC = () => {
     []
   );
 
+  // Table component
   const table = useMemo(
     () => (
       <table className="min-w-full divide-y dark:divide-gray-600 divide-gray-200 bg-slate-200 dark:bg-stone-800">
@@ -62,6 +66,7 @@ const Table: React.FC = () => {
     [data, visibleRows]
   );
 
+  // Determine the content to render based on the state
   const content = useMemo(() => {
     switch (state) {
       case "loading":
@@ -75,6 +80,7 @@ const Table: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, data, visibleRows]);
 
+  // Load more rows
   const loadMore = () => {
     setVisibleRows((prev) => Math.min(prev + 15, data.length));
   };
@@ -83,9 +89,11 @@ const Table: React.FC = () => {
 
   return (
     <div>
+      {/* Scrollable container */}
       <div className="overflow-scroll h-96 md:h-[500px] rounded-md border-2 dark:border-gray-600 border-gray-300 bg-slate-300 dark:bg-stone-800">
         {content}
       </div>
+      {/* Load more button */}
       <button
         disabled={allDataRendered}
         onClick={loadMore}

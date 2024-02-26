@@ -4,6 +4,10 @@ import SqlEditor from "../sqlEditor";
 import Table from "../table";
 import HistoryTable from "../history";
 
+/**
+ * LayoutBox component.
+ * Renders a layout with a table, SQL editor, and history table.
+ */
 const LayoutBox: React.FC = () => {
   return (
     <div className="flex flex-col-reverse md:flex-row flex-grow p-3 gap-14 md:gap-4 bg-gradient-to-r dark:from-gray-600 dark:to-stone-900 from-slate-200 to-gray-700">

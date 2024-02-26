@@ -1,9 +1,21 @@
 "use client";
-import { useBoundStore } from "@/app/store/rootStore";
 import React, { memo } from "react";
+import { useBoundStore } from "@/app/store/rootStore";
 
+/**
+ * Header component for the SQL Buddy application.
+ * It displays the application title and a theme toggle button.
+ */
 const Header: React.FC = () => {
   const { toggleTheme, theme } = useBoundStore((state) => state);
+
+  /**
+   * Toggles the theme between light and dark.
+   */
+  const handleThemeToggle = () => {
+    toggleTheme();
+  };
+
   return (
     <header
       className={`bg-gradient-to-r dark:from-gray-500 dark:to-stone-900 from-slate-50 to-gray-400 py-4`}
@@ -15,21 +27,12 @@ const Header: React.FC = () => {
           SQL Buddy
         </h1>
       </div>
-      {theme === "dark" ? (
-        <button
-          onClick={toggleTheme}
-          className="absolute top-4 right-6 bg-black rounded-full w-9 h-9 text-2xl"
-        >
-          🌝
-        </button>
-      ) : (
-        <button
-          onClick={toggleTheme}
-          className="absolute top-4 right-6 bg-black w-9 h-9 rounded-full text-2xl"
-        >
-          🌙
-        </button>
-      )}
+      <button
+        onClick={handleThemeToggle}
+        className="absolute top-4 right-6 bg-black rounded-full w-9 h-9 text-2xl"
+      >
+        {theme === "dark" ? "🌝" : "🌙"}
+      </button>
     </header>
   );
 };

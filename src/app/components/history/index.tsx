@@ -1,17 +1,28 @@
 "use client";
+import React, { memo, useState, ChangeEvent } from "react";
 import { useBoundStore } from "@/app/store/rootStore";
 import { onExecute } from "@/app/utilities/helpers";
-import React, { memo, useState } from "react";
 
+/**
+ * HistoryTable component displays a table of search history
+ * with a search input and a clear button.
+ */
 const HistoryTable: React.FC = () => {
   const { history, clearHistory, setData, setHistory, setState } =
     useBoundStore((state) => state);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  /**
+   * Handles the change event of the search input.
+   * @param e - The change event
+   */
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
+  /**
+   * Filters the history based on the search term.
+   */
   const filteredHistory = history.filter((item) =>
     item.toLowerCase().includes(searchTerm.toLowerCase())
   );
