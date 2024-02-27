@@ -1,52 +1,48 @@
-# 🤖 SQL Buddy
+# SQL Buddy 🤖
 
-## 📚 Overview
+## Overview 📚
 
-_Note : Although there is no proper query validation added, User can run any query as long as it is fetching from the available tables._
+**SQL Buddy** is a feature-rich SQL editor designed to streamline the process of writing and executing queries. While query validation is not yet implemented, users have the flexibility to run queries fetching data from available tables.
 
-This is a SQL editor to write and execute your queries. Run your query by clicking on **Execute** and get the results displayed in table format. User can also clear the query with **Clear** button and see the list of tables from **Available Table** button. Only 15 rows are generated at a time and the user can click on **Load More** to get the next 15 set of rows. **Export** will download the current set of data in csv format.
+Upon executing a query, results are displayed in a table format. Users can easily clear the query input using the **Clear** button or access a list of available tables via the **Available Tables** button. To manage large datasets, only 15 rows are generated at a time, with the option to load more rows in increments of 15 by clicking **Load More**. Additionally, users can export the current dataset in CSV format using the **Export** button.
 
-All successfull queries are shown in **History** section. User can tap on any query in history list to quickly call that data. History can also be cleared using **Clear** button. User can also change the **Theme** by clicking on theme toggle button on top right corner. This website is fully **Responsive** and can be run on both large and small devices.
+Successful queries are logged in the **History** section for easy access. Users can quickly retrieve previous queries by selecting them from the history list. The history can also be cleared using the **Clear** button. Furthermore, users have the option to customize the theme by toggling the theme button located in the top right corner. The website is fully responsive, ensuring a seamless experience across devices of all sizes.
 
-## 👾 Example Queries
+## Example Queries 👾
 
 1. `SELECT * FROM Customers`
 2. `SELECT * FROM Categories`
 3. `SELECT * FROM Orders;`
 
-## 👨‍💻 Live Demo
+## Live Demo 👨‍💻
 
-<a href="https://github.com/samarth4599/sqlbuddy" target="blank">
-Github
-</a>
+Explore the project on [GitHub](https://github.com/samarth4599/sqlbuddy) or try out the live demo: [SQL Buddy](https://sqlbuddy-sage.vercel.app/)
 
-Try out the website : [SQL Buddy](https://sqlbuddy-sage.vercel.app/)
+## Tech Stack 😎
 
-## 😎 Tech Stack
+- ![Next JS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+- ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-![Next JS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+## Dependencies ⚙️
 
-## ⚙️ Dependencies
+- **_@uiw/react-codemirror_** - Code editor for writing queries.
+- **_react-csv-downloader_** - Utility for downloading displayed data in CSV format.
+- **_react-papaparse_** - Library for parsing CSV data from APIs.
+- **_react-toastify_** - Toast notifications for displaying error and info messages.
+- **_zustand_** - Lightweight state management solution.
+- **_husky_** - Git hooks for pre-commit actions.
 
-- **_@uiw/react-codemirror_** - For code editor to write queries.
-- **_react-csv-downloader_** - To download displayed data in CSV format.
-- **_react-papaparse_** - To Parse CSV data coming from API.
-- **_react-toastify_** - To display Error and Info toasts.
-- **_zustand_** - For lightweight state management.
-- **_husky_** - For pre-commit hooks.
+## Page Load Time ⏱
 
-## ⏱ Page Load Time
+### Website Performance
 
-Website performance
+![Website Performance](src/assets/website_performance.PNG)
 
-(src/assets/website_performance.PNG)
+### Mobile Performance
 
-Mobile performance
+![Mobile Performance](src/assets/mobile_performance.PNG)
 
-(src/assets/mobile_performance.PNG)
+## Optimization Steps 🥷
 
-## 🥷 Optimization Steps
-
-- Used Lighthouse DevTools Extension to find the performance issues and fix them as suggested.
-- Used React hooks - memo, useMemo and useCallback to prevent unnecessary re-renders and increased performance.
+- Utilized Lighthouse DevTools Extension to identify performance issues and implement suggested fixes.
+- Leveraged React hooks (memo, useMemo, useCallback) to minimize unnecessary re-renders and optimize performance.
