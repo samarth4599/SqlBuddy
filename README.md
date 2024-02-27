@@ -16,7 +16,7 @@ Successful queries are logged in the **History** section for easy access. Users 
 
 ## Demo Video 👓
 
-Checkout the demo vide on YouTube
+Checkout the demo video on YouTube
 
 [![Demo](https://img.youtube.com/vi/VTlcg5r9XOk/0.jpg)](https://www.youtube.com/watch?v=VTlcg5r9XOk)
 
