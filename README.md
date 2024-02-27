@@ -42,11 +42,11 @@ Explore the project on [GitHub](https://github.com/samarth4599/sqlbuddy) or try 
 
 ### Website Performance
 
-![Website Performance](src/assets/website_performance.PNG)
+![Website](website_performance.png)
 
 ### Mobile Performance
 
-![Mobile Performance](src/assets/mobile_performance.PNG)
+![mobuke](mobile_performance.png)
 
 ## Optimization Steps 🥷
 
