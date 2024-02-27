@@ -14,6 +14,12 @@ Successful queries are logged in the **History** section for easy access. Users 
 2. `SELECT * FROM Categories`
 3. `SELECT * FROM Orders;`
 
+## Demo Video 👓
+
+Checkout the demo vide on YouTube
+
+[![Demo](https://img.youtube.com/vi/VTlcg5r9XOk/0.jpg)](https://www.youtube.com/watch?v=VTlcg5r9XOk)
+
 ## Live Demo 👨‍💻
 
 Explore the project on [GitHub](https://github.com/samarth4599/sqlbuddy) or try out the live demo: [SQL Buddy](https://sqlbuddy-sage.vercel.app/)
