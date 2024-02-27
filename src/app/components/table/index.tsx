@@ -115,7 +115,7 @@ const Table: React.FC = () => {
             separator=","
             wrapColumnChar=""
             columns={convertToHeaders(data)}
-            datas={convertToRows(data)}
+            datas={convertToRows(data.slice(0, visibleRows + 1))}
           >
             <button
               onClick={loadMore}

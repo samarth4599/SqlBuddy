@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🤖 SQL Buddy
 
-## Getting Started
+## 📚 Overview
 
-First, run the development server:
+_Note : Although there is no proper query validation added, User can run any query as long as it is fetching from the available tables._
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This is a SQL editor to write and execute your queries. Run your query by clicking on **Execute** and get the results displayed in table format. User can also clear the query with **Clear** button and see the list of tables from **Available Table** button. Only 15 rows are generated at a time and the user can click on **Load More** to get the next 15 set of rows. **Export** will download the current set of data in csv format.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+All successfull queries are shown in **History** section. User can tap on any query in history list to quickly call that data. History can also be cleared using **Clear** button. User can also change the **Theme** by clicking on theme toggle button on top right corner. This website is fully **Responsive** and can be run on both large and small devices.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 👾 Example Queries
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. `SELECT * FROM Customers`
+2. `SELECT * FROM Categories`
+3. `SELECT * FROM Orders;`
 
-## Learn More
+## 👨‍💻 Live Demo
 
-To learn more about Next.js, take a look at the following resources:
+<a href="https://github.com/samarth4599/sqlbuddy" target="blank">
+Github
+</a>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Try out the website : [SQL Buddy](https://sqlbuddy-sage.vercel.app/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 😎 Tech Stack
 
-## Deploy on Vercel
+![Next JS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚙️ Dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **_@uiw/react-codemirror_** - For code editor to write queries.
+- **_react-csv-downloader_** - To download displayed data in CSV format.
+- **_react-papaparse_** - To Parse CSV data coming from API.
+- **_react-toastify_** - To display Error and Info toasts.
+- **_zustand_** - For lightweight state management.
+- **_husky_** - For pre-commit hooks.
+
+## ⏱ Page Load Time
+
+Website performance
+
+(src/assets/website_performance.PNG)
+
+Mobile performance
+
+(src/assets/mobile_performance.PNG)
+
+## 🥷 Optimization Steps
+
+- Used Lighthouse DevTools Extension to find the performance issues and fix them as suggested.
+- Used React hooks - memo, useMemo and useCallback to prevent unnecessary re-renders and increased performance.
